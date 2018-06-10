@@ -1,0 +1,41 @@
+#TurtleBot3 Simulation using Gazebo ใน 3 ขั้นตอน
+*** หมายเหตุ : ต้องผ่านการทำ #TurtleBot3 Simulation using Fake Node มาแล้ว ***
+*** ข้อควรระวัง : หากเครื่องไม่มี NVIDIA ผลลัพธ์ที่ออกมาอาจไม่เป็นอย่างที่ควรจะเป็น ***
+#1. ทำการ Simulate โดยมี 3 ทางเลือก
+
+#1.1 Empty World
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_gazebo turtlebot3_empty_world.launch
+
+#หรือ
+
+#1.2 TurtleBot3 World
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+#หรือ
+
+#1.3 TurtleBot3 House
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_gazebo turtlebot3_house.launh
+
+#2. เปิด RViz เพื่อใช้เป็น Graphinc User Interface
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$roslaunch turtlebot3_gazebo turtlebot3_gazebo_rviz.launch
+
+#3. ควบคุม TurtleBot3 ให้เดินเล่นไปมา
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+

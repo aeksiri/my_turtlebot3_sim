@@ -1,0 +1,53 @@
+#TurtleBot3 Simulation using Fake Node
+#1. ติดตั้ง package ที่เกี่ยวเนื่องกัน
+$ cd ~
+$ sudo apt remove ros-kinetic-turtlebot3*
+$ sudo apt-get install ros-kinetic-joy ros-kinetic-teleop-twist-joy ros-kinetic-teleop-twist-keyboard ros-kinetic-laser-proc ros-kinetic-rgbd-launch ros-kinetic-depthimage-to-laserscan ros-kinetic-rosserial-arduino ros-kinetic-rosserial-python ros-kinetic-rosserial-server ros-kinetic-rosserial-client ros-kinetic-rosserial-msgs ros-kinetic-amcl ros-kinetic-map-server ros-kinetic-move-base ros-kinetic-urdf ros-kinetic-xacro ros-kinetic-compressed-image-transport ros-kinetic-rqt-image-view ros-kinetic-gmapping ros-kinetic-navigation ros-kinetic-interactive-markers
+
+#2. สร้างพื้นที่สำหรับการทำ Simulation
+$ cd ~
+$ mkdir -p my_turtlebot3_sim_ws/src
+
+#3. ทำการ Clone ตัว source code จากต้นฉบับ
+$ cd ~/my_turtlebot3_sim_ws/src
+$ git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+$ git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+$ git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+
+#4. Compile ตัว source code
+$ cd ~/my_turtlebot3_sim_ws
+$ catkin_make
+$ catkin_make
+
+#5. เริ่มทำการ Simulate โดยมี 2 ทางเลือก
+#5.1.1 TURTLEBOT3 MODEL เป็นตัว burger (Launch the Fake Node of the burger)
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_fake turtlebot3_fake.launch
+
+#5.1.2 ควบคุมการเคลื่อนที่ด้วย Keyboard 
+#เปิด Terminal อีก 1 หน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+## Enjoy!!!
+
+หรือ
+
+#5.2.1 TURTLEBOT3 MODEL เป็นตัว waffle (Launch the Fake Node of the waffle)
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_fake turtlebot3_fake.launch
+
+#5.2.2 ควบคุมการเคลื่อนที่ด้วย Keyboard 
+#เปิด Terminal อีก 1 หน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+## Enjoy!!!

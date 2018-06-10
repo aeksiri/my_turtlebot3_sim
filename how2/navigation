@@ -1,0 +1,35 @@
+#TurtleBot3_Navigation ด้วย map ที่สร้างขี้น ใน 4 ขั้นตอน
+*** หมายเหตุ : ต้องผ่านการทำ #TurtleBot3_Simulation_using_Fake_Node มาแล้ว ***
+*** และ : ต้องผ่านการทำ #TurtleBot3_Simulation_using_Gazebo มาแล้ว ***
+*** และ : ต้องผ่านการทำ #TurtleBot3_SLAM : ทำแผนที่ โดยใช้ SLAM
+*** ข้อควรระวัง : หากเครื่องไม่มี NVIDIA ผลลัพธ์ที่ออกมาอาจไม่เป็นอย่างที่ควรจะเป็น ***
+
+#1. Launch Gazebo
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_gazebo turtlebot3_house.launh
+
+#2. Execute Navigation
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/my_turtlebot3_ws/src/turtlebot3/turtlebot3_navigation/maps/my_map.yaml
+
+#3. Set ตำแหน่ง TurtleBot3 ให้ถูกต้อง ด้วย RViz
+จะสังเกตุได้ว่าหุ่นยนต์จะอยู่คนละตำแหน่งเมื่อเทียบกับใน Gazebo
+จึงต้องปรับตำแหน่งให้ตรงกัน
+#ที่ RViz
+- คลิกซ้ายที่ 2D Pose Estimate
+- เลื่อนเม้าส์ไปที่ตำแหน่งที่ TurtleBot3 อยู่จริงๆ
+- คลิกซ้ายและค้างเอาไว้ จะเห็นลูกศรขึ้น
+- เลื่อนเม้าส์เพื่อให้ทิศทางของ TurtleBot3 หันไปในทิศทางเดียวกับที่อยู่ใน Gazebo แล้วปล่อยปุ่มที่คลิกค้างเอาไว้
+
+#4. สั่งการหุ่นยนต์ให้เคลื่อนที่ไปยังตำแหน่งที่ต้องการ
+และหุ่นยนต์จะสร้างเส้นทางเดินและเคลื่อนที่ไปยังจุดหมายโดยอัตโนมัติ
+#ที่ RViz
+- คลิกที่ 2D Nav Goal
+- ตามด้วยคลิกที่ตำแหน่งที่ต้องการให้หุ่นยนต์เคลื่อนที่ไป
+
+!!! Enjoy !!!

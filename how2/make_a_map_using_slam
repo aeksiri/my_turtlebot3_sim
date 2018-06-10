@@ -1,0 +1,36 @@
+#TurtleBot3 : ทำแผนที่ โดยใช้ SLAM ใน 4 ขั้นตอน
+*** หมายเหตุ : ต้องผ่านการทำ #TurtleBot3 Simulation using Fake Node มาแล้ว ***
+*** และ : ต้องผ่านการทำ #TurtleBot3 Simulation using Gazebo มาแล้ว ***
+*** ข้อควรระวัง : หากเครื่องไม่มี NVIDIA ผลลัพธ์ที่ออกมาอาจไม่เป็นอย่างที่ควรจะเป็น ***
+
+#1. Launch Gazebo
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_gazebo turtlebot3_house.launh
+
+#2. Launch SLAM
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ export TURTLEBOT3_MODEL=waffle
+$ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+
+#3. Remote Control TurtleBot3
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_sim_ws
+$ source devel/setup.bash
+$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+#ควบคุมให้ TurtleBot3 ไปยังจุดต่างๆ ให้ทั่วบริเวณบ้าน
+
+#4. Save the Map
+#เปิด Terminal อีกหนึ่งหน้าต่าง
+$ cd ~/my_turtlebot3_ws/src/turtlebot3/turtlebot3_navigation/maps
+$ rosrun map_server map_saver -f my_map
+
+#แสดงแผนที่ขึ้นมาดูว่าเป็นอย่างไรหากไม่เป็นที่น่าพอใจก็ทำใหม่ตั้งแต่ต้น ^_^
+#ใน Terminal อันเดิม
+$ cd ~/my_turtlebot3_ws/src/turtlebot3/turtlebot3_navigation/maps
+$ eog my_map.pgm
+
